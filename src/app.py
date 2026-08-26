@@ -46,8 +46,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", default="reports/model_report.html")
     args = parser.parse_args(argv)
 
-    if args.image_size % 256 != 0:
-        parser.error("--image-size must be a multiple of 256 (the pix2pix U-Net downsamples 8x)")
+    if args.image_size <= 0 or args.image_size % 256 != 0:
+        parser.error("--image-size must be a positive multiple of 256 (the pix2pix U-Net downsamples 8x)")
 
     try:
         domain_x = load_domain(args.domain_x_dir, image_size=args.image_size)
@@ -80,6 +80,7 @@ def main(argv: list[str] | None = None) -> int:
             )
         )
 
+    epoch_before = int(trainer.checkpoint.epoch)
     trainer.fit(
         domain_x,
         domain_y,
@@ -87,9 +88,17 @@ def main(argv: list[str] | None = None) -> int:
         checkpoint_interval=args.checkpoint_interval,
         on_epoch_end=on_epoch_end,
     )
+    epoch_after = int(trainer.checkpoint.epoch)
 
     if not epoch_reports:
-        logger.warning("no epochs ran (already at or past --epochs count) — report not written")
+        if epoch_after <= epoch_before:
+            logger.warning("no epochs ran (already at or past --epochs count) — report not written")
+        else:
+            logger.warning(
+                "%d epoch(s) ran but none landed on --sample-interval=%d — report not written",
+                epoch_after - epoch_before,
+                args.sample_interval,
+            )
         return 0
 
     report = build_report("PixelDrift — CycleGAN Training Report", epoch_reports)

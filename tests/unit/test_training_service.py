@@ -96,3 +96,12 @@ def test_fit_with_real_factory_one_epoch(tmp_path):
     assert checkpoint_dir.exists()
     assert trainer.checkpoint_manager.latest_checkpoint is not None
     assert int(trainer.checkpoint.epoch) == 1
+
+    restored_trainer = CycleGANTrainer(Pix2PixGeneratorFactory(), checkpoint_dir=checkpoint_dir)
+    assert int(restored_trainer.checkpoint.epoch) == 1
+    for original_var, restored_var in zip(
+        trainer.generator_g.trainable_variables,
+        restored_trainer.generator_g.trainable_variables,
+        strict=True,
+    ):
+        np.testing.assert_array_equal(original_var.numpy(), restored_var.numpy())
