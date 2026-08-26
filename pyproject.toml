@@ -25,3 +25,4 @@ ignore = ["E501", "B008", "UP007", "PIE790"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --tb=short"
+markers = ["slow: real-model tests, slower than the stub-based suite"]

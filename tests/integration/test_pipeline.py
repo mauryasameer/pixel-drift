@@ -50,7 +50,7 @@ def test_pipeline_writes_report_and_checkpoint(tmp_path, monkeypatch):
         [
             "--domain-x-dir", str(domain_x_dir),
             "--domain-y-dir", str(domain_y_dir),
-            "--image-size", "8",
+            "--image-size", "256",
             "--epochs", "1",
             "--checkpoint-dir", str(checkpoint_dir),
             "--checkpoint-interval", "1",
