@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import sys
 
 from forge.llm.claude import ClaudeProvider
 from forge.llm.ollama import OllamaProvider
@@ -25,10 +26,18 @@ LLM_PROVIDERS: dict[str, type] = {
 
 
 def main(argv: list[str] | None = None) -> int:
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+
     parser = argparse.ArgumentParser(prog="pixel-drift")
     parser.add_argument("--domain-x-dir", default="src/data/domain_x")
     parser.add_argument("--domain-y-dir", default="src/data/domain_y")
-    parser.add_argument("--image-size", type=int, default=256)
+    parser.add_argument(
+        "--image-size",
+        type=int,
+        default=256,
+        help="Square image size images are resized to; must be a multiple of 256 "
+        "(the pix2pix U-Net downsamples 8x)",
+    )
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--checkpoint-dir", default="checkpoints")
     parser.add_argument("--checkpoint-interval", type=int, default=5)
@@ -37,8 +46,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", default="reports/model_report.html")
     args = parser.parse_args(argv)
 
-    domain_x = load_domain(args.domain_x_dir, image_size=args.image_size)
-    domain_y = load_domain(args.domain_y_dir, image_size=args.image_size)
+    if args.image_size % 256 != 0:
+        parser.error("--image-size must be a multiple of 256 (the pix2pix U-Net downsamples 8x)")
+
+    try:
+        domain_x = load_domain(args.domain_x_dir, image_size=args.image_size)
+        domain_y = load_domain(args.domain_y_dir, image_size=args.image_size)
+    except FileNotFoundError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
 
     sample_x = next(iter(domain_x))
     sample_y = next(iter(domain_y))
@@ -71,6 +87,10 @@ def main(argv: list[str] | None = None) -> int:
         checkpoint_interval=args.checkpoint_interval,
         on_epoch_end=on_epoch_end,
     )
+
+    if not epoch_reports:
+        logger.warning("no epochs ran (already at or past --epochs count) — report not written")
+        return 0
 
     report = build_report("PixelDrift — CycleGAN Training Report", epoch_reports)
     report.save(args.output)

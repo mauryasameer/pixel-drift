@@ -28,7 +28,7 @@ Flags:
 |---|---|---|
 | `--domain-x-dir` | `src/data/domain_x` | First image domain |
 | `--domain-y-dir` | `src/data/domain_y` | Second image domain |
-| `--image-size` | `256` | Square image size images are resized to |
+| `--image-size` | `256` | Square image size images are resized to; must be a multiple of 256 (the pix2pix U-Net downsamples 8x) |
 | `--epochs` | `10` | Training epochs (notebook's original scale was 500) |
 | `--checkpoint-dir` | `checkpoints` | Where to save/resume TensorFlow checkpoints |
 | `--checkpoint-interval` | `5` | Save a checkpoint every N epochs |
@@ -57,4 +57,6 @@ Training auto-resumes from the latest checkpoint in `--checkpoint-dir` if one ex
 pytest tests/ -v
 ```
 
-15 tests, zero real network/LLM/TensorFlow-training calls beyond tiny synthetic smoke tests.
+16 tests, zero real network/LLM/TensorFlow-training calls beyond tiny synthetic smoke tests
+(one of which — `test_fit_with_real_factory_one_epoch`, marked `slow` — builds the real
+`Pix2PixGeneratorFactory` U-Net for one full training step).
