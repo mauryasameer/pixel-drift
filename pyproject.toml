@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pixel-drift"
 version = "0.1.0"
-description = ""
+description = "CycleGAN unpaired image translation with GenAI translation-quality commentary, built on sameer-forge."
 readme = "README.md"
 requires-python = ">=3.12"
 
