@@ -9,3 +9,5 @@ build/
 .DS_Store
 src/data/*
 !src/data/.gitignore
+checkpoints/
+reports/
