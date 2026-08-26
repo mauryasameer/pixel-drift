@@ -1,0 +1,3 @@
+sameer-forge[llm,vision] @ git+https://github.com/mauryasameer/the-forge.git@v0.5.1
+tensorflow>=2.16
+tensorflow_examples @ git+https://github.com/tensorflow/examples.git
