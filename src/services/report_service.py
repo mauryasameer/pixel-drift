@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from forge.report.builder import ReportBuilder, ReportSection
+from meerax.report.builder import ReportBuilder, ReportSection
 
 
 class EpochReport:

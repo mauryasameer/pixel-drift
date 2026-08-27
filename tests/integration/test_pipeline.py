@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-from forge.llm.base import LLMResponse
+from meerax.llm.base import LLMResponse
 from PIL import Image
 
 from src import app
