@@ -1,5 +1,7 @@
 # PixelDrift
 
+![PixelDrift CycleGAN image translation project hero](docs/assets/pixeldrift-portfolio-hero.png)
+
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 
 CycleGAN-based unpaired grayscale image-to-image translation, built on
