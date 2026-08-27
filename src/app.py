@@ -4,9 +4,9 @@ import argparse
 import logging
 import sys
 
-from forge.llm.claude import ClaudeProvider
-from forge.llm.ollama import OllamaProvider
-from forge.llm.openai_provider import OpenAIProvider
+from meerax.llm.claude import ClaudeProvider
+from meerax.llm.ollama import OllamaProvider
+from meerax.llm.openai_provider import OpenAIProvider
 
 from src.providers.pix2pix_factory import Pix2PixGeneratorFactory
 from src.services.data_service import load_domain

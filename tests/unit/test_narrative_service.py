@@ -1,5 +1,5 @@
 import numpy as np
-from forge.llm.base import LLMResponse
+from meerax.llm.base import LLMResponse
 
 from src.services.narrative_service import generate_commentary
 

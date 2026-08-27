@@ -5,8 +5,8 @@ import logging
 
 import matplotlib.pyplot as plt
 import numpy as np
-from forge.llm.base import LLMProvider
-from forge.vision.gridplot import plot_translation_grid
+from meerax.llm.base import LLMProvider
+from meerax.vision.gridplot import plot_translation_grid
 
 logger = logging.getLogger(__name__)
 

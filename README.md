@@ -5,9 +5,9 @@
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 
 CycleGAN-based unpaired grayscale image-to-image translation, built on
-[sameer-forge](https://github.com/mauryasameer/the-forge). Adds real checkpointing and a GenAI
-translation-quality commentary layer via `forge.llm`'s multimodal support, rendered into a
-self-contained HTML report via `forge.report`.
+[meerax](https://github.com/mauryasameer/the-forge). Adds real checkpointing and a GenAI
+translation-quality commentary layer via `meerax.llm`'s multimodal support, rendered into a
+self-contained HTML report via `meerax.report`.
 
 ## Setup
 
