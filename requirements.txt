@@ -1,3 +1,3 @@
-meerax[llm,vision]==1.4.0
+meerax[llm,vision]==1.8.0
 tensorflow>=2.21.0
 tensorflow_examples @ git+https://github.com/tensorflow/examples.git
