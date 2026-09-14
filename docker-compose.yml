@@ -1,0 +1,10 @@
+services:
+  pixel-drift:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./src/data:/home/app/pixel-drift/src/data
+      - ./checkpoints:/home/app/pixel-drift/checkpoints
+      - ./reports:/home/app/pixel-drift/reports
