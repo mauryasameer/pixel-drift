@@ -101,7 +101,13 @@ def main(argv: list[str] | None = None) -> int:
             )
         return 0
 
-    report = build_report("PixelDrift — CycleGAN Training Report", epoch_reports)
+    run_metadata = {
+        "llm_provider": args.llm_provider,
+        "epochs_trained": epoch_after,
+        "image_size": args.image_size,
+        "checkpoint_dir": args.checkpoint_dir,
+    }
+    report = build_report("PixelDrift — CycleGAN Training Report", epoch_reports, run_metadata)
     report.save(args.output)
     print(f"report written to {args.output}")
     return 0

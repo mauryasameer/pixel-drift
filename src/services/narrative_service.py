@@ -44,7 +44,7 @@ def generate_commentary(
     )
     try:
         png_bytes = _figure_to_png_bytes(fig)
-        response = llm.generate(COMMENTARY_PROMPT, images=[png_bytes])
+        response = llm.generate(COMMENTARY_PROMPT, images=[png_bytes], temperature=0.0)
         commentary = response.content
     except Exception:
         logger.exception("Narrative commentary generation failed")

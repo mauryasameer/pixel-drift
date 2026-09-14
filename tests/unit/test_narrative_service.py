@@ -11,7 +11,7 @@ class _StubLLM:
         self.calls = []
 
     def generate(self, prompt, system=None, images=None, **kwargs):
-        self.calls.append({"prompt": prompt, "images": images})
+        self.calls.append({"prompt": prompt, "images": images, "kwargs": kwargs})
         if self._raise_error:
             raise RuntimeError("LLM unreachable")
         return LLMResponse(content=self._content, model="stub", input_tokens=1, output_tokens=1)
@@ -34,6 +34,13 @@ def test_generate_commentary_passes_grid_image_to_llm():
     assert llm.calls[0]["images"] is not None
     assert len(llm.calls[0]["images"]) == 1
     assert isinstance(llm.calls[0]["images"][0], bytes)
+
+
+def test_generate_commentary_passes_temperature_zero():
+    llm = _StubLLM(content="looks good")
+    generate_commentary(_tiny_image(), _tiny_image(), _tiny_image(), llm)
+
+    assert llm.calls[0]["kwargs"].get("temperature") == 0.0
 
 
 def test_generate_commentary_falls_back_on_llm_failure():
