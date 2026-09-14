@@ -2,7 +2,7 @@
 
 ![PixelDrift CycleGAN image translation project hero](docs/assets/pixeldrift-portfolio-hero.png)
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.1.1-blue)
 
 CycleGAN-based unpaired grayscale image-to-image translation, built on
 [meerax](https://github.com/mauryasameer/the-forge). Adds real checkpointing and a GenAI
@@ -52,6 +52,23 @@ Training auto-resumes from the latest checkpoint in `--checkpoint-dir` if one ex
 - `src/services/training_service.py` — `CycleGANTrainer`: training loop + checkpointing
 - `src/services/narrative_service.py` — LLM vision commentary on sample grids
 - `src/services/report_service.py` — HTML report assembly
+
+## Docker
+
+```bash
+docker compose up --build
+```
+
+Training runs with this repo's own CLI defaults (`--epochs 10`); override via
+`docker compose run pixel-drift python -m src.app --epochs 500 ...` for a longer real run, or a
+smaller `--epochs`/`--sample-interval` for a quick smoke test. Set `ANTHROPIC_API_KEY` /
+`OPENAI_API_KEY` in `.env` (copy from `.env.example`) if using `--llm-provider claude` /
+`--llm-provider openai`; the default `ollama` provider expects Ollama running on the host.
+
+## Governance
+
+See [GOVERNANCE.md](./GOVERNANCE.md) for intended use, explainability boundaries, and LLM
+controls.
 
 ## Testing
 
