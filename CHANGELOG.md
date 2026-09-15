@@ -3,6 +3,11 @@
 All notable changes to this project will be documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.2] - 2026-09-15
+### Changed
+- README badges brought to linked shields.io style (CI, Version, Python, License all
+  clickable), matching llm_eval/ocr_docker.
+
 ## [0.1.1] - 2026-09-14
 ### Added
 - `Dockerfile`/`docker-compose.yml`/`.env.example` for one-click `docker compose up --build` deploy.
