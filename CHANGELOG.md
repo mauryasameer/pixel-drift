@@ -3,6 +3,10 @@
 All notable changes to this project will be documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.3] - 2026-09-18
+### Changed
+- Replaced the README hero with a text-free CycleGAN transformation visual that reflects PixelDrift's bidirectional grayscale translation workflow.
+
 ## [0.1.2] - 2026-09-15
 ### Changed
 - README badges brought to linked shields.io style (CI, Version, Python, License all

@@ -1,8 +1,8 @@
 # PixelDrift
 
-![PixelDrift CycleGAN image translation project hero](docs/assets/pixeldrift-portfolio-hero.png)
+![PixelDrift CycleGAN image translation project hero](docs/assets/pixeldrift-cycle-hero-v2.png)
 
-[![Version](https://img.shields.io/badge/version-0.1.2-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.1.3-blue)](CHANGELOG.md)
 [![CI](https://github.com/mauryasameer/pixel-drift/actions/workflows/ci.yml/badge.svg)](https://github.com/mauryasameer/pixel-drift/actions)
 [![Python](https://img.shields.io/badge/python-3.12-3776AB)](https://www.python.org)
 [![License](https://img.shields.io/badge/license-MIT-informational)](LICENSE)
